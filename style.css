@@ -364,6 +364,9 @@ section .title::after{
     color: crimson;
     background: none;
 }
+.about .about-content  p{
+        color: rgb(23, 20, 20);
+}
 
 /* services section styling */
 .services, .teams{
