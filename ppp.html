@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sheetal Singh - 3-Day Study Plan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c 0%, #b21f1f 50%, #fdbb2d 100%);
+            color: #333;
+            padding: 20px;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+        }
+        
+        .student-name {
+            color: #3498db;
+            font-weight: bold;
+            font-size: 1.4em;
+        }
+        
+        .date {
+            color: #7f8c8d;
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+        
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .tab-button {
+            padding: 15px 30px;
+            background: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 1.1em;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .tab-button:hover {
+            background: #3498db;
+            transform: translateY(-3px);
+        }
+        
+        .tab-button.active {
+            background: #e74c3c;
+            transform: translateY(-3px);
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .day-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .day {
+            flex: 1;
+            min-width: 350px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .day h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #3498db;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+        
+        .subject-list {
+            list-style-type: none;
+        }
+        
+        .subject-list li {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .subject-list li:hover {
+            background-color: #f8f9fa;
+            transform: translateX(5px);
+        }
+        
+        .subject-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .time-display {
+            background: #3498db;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            min-width: 110px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .subject-name {
+            font-weight: 500;
+            font-size: 1.1em;
+        }
+        
+        .break {
+            background-color: #fff3cd;
+            color: #856404;
+            font-style: italic;
+        }
+        
+        .break .time-display {
+            background: #ffc107;
+            color: #856404;
+        }
+        
+        .revision {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4caf50;
+        }
+        
+        .revision .time-display {
+            background: #4caf50;
+        }
+        
+        .day-stats {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 1.1em;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: white;
+            font-size: 1em;
+        }
+        
+        .motivation {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 30px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .motivation h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        
+        .motivation p {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 1.1em;
+        }
+        
+        @media (max-width: 768px) {
+            .day-container {
+                flex-direction: column;
+            }
+            
+            .tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .tab-button {
+                width: 80%;
+                margin-bottom: 10px;
+            }
+            
+            .day {
+                min-width: 100%;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>3-Day Study Plan with Revision</h1>
+            <p class="student-name">For Sheetal Singh</p>
+            <p class="date">Computer Science Subjects with Dedicated Revision Time</p>
+        </header>
+        
+        <div class="tabs">
+            <button class="tab-button active" onclick="showTab('current-day')">Current Day</button>
+            <button class="tab-button" onclick="showTab('next-day')">Next Day</button>
+            <button class="tab-button" onclick="showTab('after-next')">Day After Next</button>
+        </div>
+        
+        <!-- Current Day -->
+        <div id="current-day" class="tab-content active">
+            <div class="day-container">
+                <div class="day">
+                    <h3>Current Day - Morning Session</h3>
+                    <ul class="subject-list">
+                        <li class="revision">
+                            <span class="subject-name">Maths Revision</span>
+                            <span class="time-display">3:00–3:30 AM</span>
+                        </li>
+                        <li>
+                            <span class="subject-name">Engineering Mathematics</span>
+                            <span class="time-display">3:30–5:30 AM</span>
+                        </li>
+                        <li class="break">
+                            <span class="subject-name">Short Break</span>
+                            <span class="time-display">5:30–5:45 AM</span>
+                        </li>
+                        <li class="revision">
+                            <span class="subject-name">Programming Revision</span>
+                            <span class="time-display">5:45–6:15 AM</span>
+                        </li>
+                        <li>
+                            <span class="subject-name">Programming and Data Structure</span>
+                            <span class="time-display">6:15–7:00 AM</span>
+                        </li>
+                    </ul>
+                    <div class="day-stats">
+                        Morning Study: 5 hours 0 minutes
+                    </div>
+                </div>
+                
+                <div class="day">
+                    <h3>Current Day - Afternoon Session</h3>
+                    <ul class="subject-list">
+                        <li class="break">
+                            <span class="subject-name">Lunch Break</span>
+                            <span class="time-display">7.00-10.00 AM</span>
+                        </li>
+                        <li class="revision">
+                            <span class="subject-name">Algorithms Revision</span>
+                            <span class="time-display">10:00–10:30 AM</span>
+                        </li>
+                        <li>
+                            <span class="subject-name">Algorithms</span>
+                            <span class="time-display">10:30–11:45 AM</span>
+                        </li>
+                        <li class="break">
+                            <span class="subject-name">Short Break</span>
+                            <span class="time-display">11:45–12:15 PM</span>
+                        </li>
+                        <li class="revision">
+                            <span class="subject-name">Database Revision</span>
+                            <span class="time-display">12:15–12:45 PM</span>
+                        </li>
+                        <li>
+                            <span class="subject-name">Database Systems</span>
+                            <span class="time-display">12:45–2:00 PM</span>
+                        </li>
+                    </ul>
+                    <div class="day-stats">
+                        Afternoon Study: 3 hours 00 minutes
+                    </div>
+                </div>
+                
+                <div class="day">
+                    <h3>Current Day - Evening Session</h3>
+                    <ul class="subject-list">
+                        <li class="break">
+                            <span class="subject-name">Fun Time </span>
+                            <span class="time-display">4:00-4:15 PM</span>
+                        </li>
+                        <li class="revision">
+                            <span class="subject-name">Aptitude Revision</span>
+                            <span class="time-display">4:15–4:45 PM</span>
+                        </li>
+                        <li>
+                            <span class="subject-name">General Aptitude</span>
+                            <span class="time-display">4:45–5:45 PM</span>
+                        </li>
+                        <li class="break">
+                            <span class="subject-name">Short Break</span>
+                            <span class="time-display">5:45–6:00 PM</span>
+                        </li>
+                        <li>
+                            <span class="subject-name">Quick Recap of All Subjects</span>
+                            <span class="time-display">6:00–7:00 PM</span>
+                        </li>
+                    </ul>
+                    <div class="day-stats">
+                        Evening Study: 2 hours 15 minut
+                    </div>
+                </div>
+                <div class="day">
+                    <h3>Current Day - Night Session</h3>
+                    <ul class="subject-list">
+                        <li class="break">
+                            <span class="subject-name">Dinner Break</span>
+                            <span class="time-display">8:00–8:30 PM</span>
+                        </li>
+                        <li class="revision">
+                            <span class="subject-name">Quick All-Subject Revision</span>
+                            <span class="time-display">8:00–9:30 PM</span>
+                        </li>
+                        <li>
+                            <span class="subject-name">Light Study / Notes</span>
+                            <span class="time-display">10:00–11:00 PM</span>
+                        </li>
+                        <li class="break">
+                            <span class="subject-name">Sleep Time </span>
+                            <span class="time-display">11.00PM-3.00 AM</span>
+                        </li>
+                    </ul>
+                    <div class="day-stats">
+                        Evening Study: 4 hours 00 minutes <br>
+                         Total: 16 hours 15 minutes
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Next Day -->
+        <div id="next-day" class="tab-content">
+            <div class="day-container">
+                <div class="day">
+                    <h3>Next Day - Morning Session</h3>
+                    <ul class="subject-list">
+                        <li class="revision">
+                            <span class="subject-name">Discrete Maths Revision</span>
+                            <span class="time-display">3:00–3:30 AM</span>
+                        </li>
+                        <li>
+                            <span class="subject-name">Discrete Mathematics</span>
+                            <span class="time-display">3:30–5:00 AM</span>
+                        </li>
+                        <li class="break">
+                            <span class="subject-name">Short Break</span>
+                            <span class="time-display">5:00–5:15 AM</span>
+                        </li>
+                        <li class="revision">
+                            <span class="subject-name">Computer Networks Revision</span>
+                            <span class="time-display">5:15–5:45 AM</span>
+                        </li>
+                        <li>
+                            <span class="subject-name">Computer Networks</span>
+                            <span class="time-display">5:45–7:00 AM</span>
+                        </li>
+                    </ul>
+                    <div class="day-stats">
+                        Morning Study: 3 hours 45 minutes
+                    </div>
+                </div>
+                
+                <div class="day">
+                    <h3>Next Day - Afternoon Session</h3>
+                    <ul class="subject-list">
+                        <li class="break">
+                            <span class="subject-name">Lunch Break</span>
+                            <span class="time-display">7:15-10:00 AM</span>
+                        </li>
+                        <li class="revision">
+                            <span class="subject-name">OS Revision</span>
+                            <span class="time-display">10:00–10:30 AM</span>
+                        </li>
+                        <li>
+                            <span class="subject-name">Operating Systems</span>
+                            <span class="time-display">10:30–11:45 AM</span>
+                        </li>
+                        <li class="break">
+                            <span class="subject-name">Short Break</span>
+                            <span class="time-display">11:45–12:15 PM</span>
+                        </li>
+                        <li class="revision">
+                            <span class="subject-name">TOC Revision</span>
+                            <span class="time-display">12:15–12:45 PM</span>
+                        </li>
+                        <li>
+                            <span class="subject-name">Theory of Computation</span>
+                            <span class="time-display">12:45–2:00 PM</span>
+                        </li>
+                    </ul>
+                    <div class="day-stats">
+                        Afternoon Study: 4 hours 00 minutes
+                    </div>
+                </div>
+                
+                <div class="day">
+                    <h3>Next Day - Evening Session</h3>
+                    <ul class="subject-list">
+                        <li class="break">
+                            <span class="subject-name">Fun Time</span>
+                            <span class="time-display">4:00-4:15 PM</span>
+                        </li>
+                        <li class="revision">
+                            <span class="subject-name">Digital Logic Revision</span>
+                            <span class="time-display">4:15–4:45 PM</span>
+                        </li>
+                        <li>
+                            <span class="subject-name">Digital Logic</span>
+                            <span class="time-display">4:45–5:45 PM</span>
+                        </li>
+                        <li class="break">
+                            <span class="subject-name">Short Break</span>
+                            <span class="time-display">5:45–6:00 PM</span>
+                        </li>
+                        <li>
+                            <span class="subject-name">Quick Recap</span>
+                            <span class="time-display">6:00–7:00 PM</span>
+                        </li>
+                    </ul>
+                    <div class="day-stats">
+                        Evening Study: 3 hours 00 minutes
+                    </div>
+                </div>
+                <div class="day">
+                    <h3>Next Day - Night Session</h3>
+                    <ul class="subject-list">
+                        <li class="break">
+                            <span class="subject-name">Dinner Break</span>
+                            <span class="time-display">8:00–8:30 PM</span>
+                        </li>
+                        <li class="break">
+                            <span class="subject-name">Quick All-Subject Revision</span>
+                            <span class="time-display">8:30–10:00 PM</span>
+                        </li>
+                        <li class="revision">
+                            <span class="subject-name">Light Study / Notes</span>
+                            <span class="time-display">10:00–11:00 PM</span>
+                        </li>
+                    </ul>
+                    <div class="day-stats">
+                        Evening Study: 4 hours 00 minutes <br>
+                        Total: 16 hours 15 minutes
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Day After Next -->
+        <div id="after-next" class="tab-content">
+            <div class="day-container">
+                <div class="day">
+                    <h3>Day After Next - Morning Session</h3>
+                    <ul class="subject-list">
+                        <li class="revision">
+                            <span class="subject-name">COA Revision</span>
+                            <span class="time-display">3:00–3:30 AM</span>
+                        </li>
+                        <li>
+                            <span class="subject-name">Computer Organization & Architecture</span>
+                            <span class="time-display">3:30–5:00 AM</span>
+                        </li>
+                        <li class="break">
+                            <span class="subject-name">Short Break</span>
+                            <span class="time-display">5:00–5:15 AM</span>
+                        </li>
+                        <li class="revision">
+                            <span class="subject-name">Compiler Revision</span>
+                            <span class="time-display">5:15–5:45 AM</span>
+                        </li>
+                        <li>
+                            <span class="subject-name">Compiler Design</span>
+                            <span class="time-display">5:45–7:00 AM</span>
+                        </li>
+                    </ul>
+                    <div class="day-stats">
+                        Morning Study: 3 hours 45 minutes
+                    </div>
+                </div>
+                
+                <div class="day">
+                    <h3>Day After Next - Afternoon Session</h3>
+                    <ul class="subject-list">
+                        <li class="break">
+                            <span class="subject-name">Lunch Break</span>
+                            <span class="time-display">7.00-10.00 AM</span>
+                        </li>
+                        <li class="revision">
+                            <span class="subject-name">Weak Topics Revision</span>
+                            <span class="time-display">10:00–10:30 AM</span>
+                        </li>
+                        <li>
+                            <span class="subject-name">Mixed Practice Session 1</span>
+                            <span class="time-display">10:30–11:45 AM</span>
+                        </li>
+                        <li class="break">
+                            <span class="subject-name">Short Break</span>
+                            <span class="time-display">11:45–12:15 PM</span>
+                        </li>
+                        <li class="revision">
+                            <span class="subject-name">Problem Areas Revision</span>
+                            <span class="time-display">12:15–12:45 PM</span>
+                        </li>
+                        <li>
+                            <span class="subject-name">Mixed Practice Session 2</span>
+                            <span class="time-display">12:45–2:00 PM</span>
+                        </li>
+                    </ul>
+                    <div class="day-stats">
+                        Afternoon Study: 4 hours 15 minutes
+                    </div>
+                </div>
+                
+                <div class="day">
+                    <h3>Day After Next - Evening Session</h3>
+                    <ul class="subject-list">
+                        <li class="break">
+                            <span class="subject-name">Fun Time</span>
+                            <span class="time-display">4.00-4.15 PM</span>
+                        </li>
+                        <li class="revision">
+                            <span class="subject-name">Test Analysis & Revision</span>
+                            <span class="time-display">4:15–4:45 PM</span>
+                        </li>
+                        <li>
+                            <span class="subject-name">Full Length Test</span>
+                            <span class="time-display">4:45–6:45 PM</span>
+                        </li>
+                        <li class="break">
+                            <span class="subject-name">Short Break</span>
+                            <span class="time-display">6:45–7:00 PM</span>
+                        </li>
+                    </ul>
+                    <div class="day-stats">
+                        Evening Study: 3 hours 45 minutes
+                    </div>
+                </div>
+            </div>
+            <div class="day">
+                <h3>Day After Next - Night Session</h3>
+                <ul class="subject-list">
+                    <li class="break">
+                        <span class="subject-name">Dinner Break</span>
+                        <span class="time-display">8:00–8:30 PM</span>
+                    </li>
+                    <li class="revision">
+                        <span class="subject-name">Quick All-Subject Revision</span>
+                        <span class="time-display">8:00–9:30 PM</span>
+                    </li>
+                    <li>
+                        <span class="subject-name">Light Study / Notes</span>
+                        <span class="time-display">10:00–11:00 PM</span>
+                    </li>
+                    <li class="break">
+                        <span class="subject-name">Sleep Time </span>
+                        <span class="time-display">11.00PM-3.00 AM</span>
+                    </li>
+                </ul>
+                <div class="day-stats">
+                    Evening Study: 4 hours 00 minutes <br>
+                     Total: 16 hours 15 minutes
+                </div>
+            </div>
+        </div>
+        
+        <div class="motivation">
+            <h3>Consistency is the Key to Success!</h3>
+            <p>"The harder you work for something, the greater you'll feel when you achieve it."</p>
+        </div>
+        
+        <footer>
+            <p>Designed specifically for Sheetal Singh's 3-day study schedule with revision time</p>
+        </footer>
+    </div>
+
+    <script>
+        function showTab(tabId) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabId).classList.add('active');
+            
+            // Update active button
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+</html>
